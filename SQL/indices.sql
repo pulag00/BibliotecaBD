@@ -1,5 +1,6 @@
 USE biblioteca_digital;
 
+
 -- Indices para la tabla: usuario
 CREATE INDEX idx_usuario_tipo ON usuario (id_tipo_usuario);
 CREATE INDEX idx_usuario_estado ON usuario (id_estado_usuario);
