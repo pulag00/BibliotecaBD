@@ -21,6 +21,7 @@ TRUNCATE TABLE tipo_usuario_catalogo;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- 4. Re-insercion de datos originales 
+
 -- -----------------------------------------------------
 -- 1. TABLAS CATALOGO (INDEPENDIENTES)
 -- Estas tablas deben llenarse primero
