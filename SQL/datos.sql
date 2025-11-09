@@ -1,4 +1,3 @@
-
 -- -----------------------------------------------------
 -- 1. TABLAS CATALOGO (INDEPENDIENTES)
 -- Estas tablas deben llenarse primero
