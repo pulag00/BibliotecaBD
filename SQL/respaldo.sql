@@ -13,7 +13,6 @@
 
 ## mysqldump -h 178.16.140.38 -u BIBLIOTECA -p BIBLIOTECA > respaldo_biblioteca.sql ##
 
-
 -- 2. COMANDO PARA RESTAURAR UN RESPALDO (RESTORE)
 
 -- Proposito: Toma el archivo (ej. 'respaldo_biblioteca.sql')
