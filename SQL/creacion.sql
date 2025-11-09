@@ -2,6 +2,7 @@
 CREATE DATABASE biblioteca_digital;
 USE biblioteca_digital;
 
+
 -- -----------------------------------------------------
 -- Tablas Catalogo (Independientes)
 -- Estas tablas almacenan valores fijos para normalizar la base de datos
