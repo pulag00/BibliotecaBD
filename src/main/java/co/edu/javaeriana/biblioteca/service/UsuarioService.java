@@ -1,5 +1,6 @@
 package co.edu.javaeriana.biblioteca.service;
 
+import co.edu.javaeriana.biblioteca.model.Libro;
 import co.edu.javaeriana.biblioteca.model.Usuario;
 import co.edu.javaeriana.biblioteca.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,16 @@ public class UsuarioService {
     @Transactional
     public Usuario guardarUsuario(Usuario u) {
         return usuarioRepository.save(u);
+    }
+
+    public Usuario buscarPorId(Integer id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado: " + id));
+    }
+
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado: " + email));
     }
 
     /** USADO POR UsuarioController: PUT /api/usuario/{id} */

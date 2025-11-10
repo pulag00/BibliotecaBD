@@ -1,1 +1,15 @@
+co\edu\javaeriana\biblioteca\repository\EstadoUsuarioCatalogoRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\CategoriaRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\PreguntaSeguridadRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\ReservaRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\EstadoReservaCatalogoRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\LibroRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\AuditoriaUsuarioRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\UsuarioRespuestaRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\AuditoriaLibroRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\ConfiguracionRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\EstadoPrestamoCatalogoRepositoryTest.class
 co\edu\javaeriana\biblioteca\BibliotecaApplicationTests.class
+co\edu\javaeriana\biblioteca\repository\TipoUsuarioRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\UsuarioRepositoryTest.class
+co\edu\javaeriana\biblioteca\repository\PrestamoRepositoryTest.class

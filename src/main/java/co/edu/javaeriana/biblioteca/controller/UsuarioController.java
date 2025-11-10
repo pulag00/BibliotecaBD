@@ -1,5 +1,6 @@
 package co.edu.javaeriana.biblioteca.controller;
 
+import co.edu.javaeriana.biblioteca.model.Libro;
 import co.edu.javaeriana.biblioteca.model.Usuario;
 import co.edu.javaeriana.biblioteca.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,27 @@ public class UsuarioController {
     public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
         return ResponseEntity.ok(usuarioService.guardarUsuario(usuario));
     }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable Integer id) {
+        try {
+            Usuario usuario = usuarioService.buscarPorId(id);
+            return ResponseEntity.ok(usuario);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Usuario> buscarPorEmail(@PathVariable String email) {
+        try {
+            Usuario usuario = usuarioService.buscarPorEmail(email);
+            return ResponseEntity.ok(usuario);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
