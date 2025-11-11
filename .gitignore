@@ -1,0 +1,13 @@
+# Maven / Spring Boot
+target/
+logs/
+*.log
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Sistema
+.DS_Store
+Thumbs.db
