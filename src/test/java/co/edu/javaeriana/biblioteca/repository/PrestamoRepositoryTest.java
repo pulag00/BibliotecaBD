@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,23 +16,28 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@DataJpaTest(properties = {
+        "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect",
+        "spring.jpa.hibernate.ddl-auto=create-drop",
+        "spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false",
+        "spring.datasource.driver-class-name=org.h2.Driver",
+        "spring.jpa.show-sql=true",
+        "spring.flyway.enabled=false",
+        "spring.liquibase.enabled=false",
+        "spring.sql.init.mode=never"
+})
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+@EntityScan("co.edu.javaeriana.biblioteca.model")
+@EnableJpaRepositories("co.edu.javaeriana.biblioteca.repository")
 class PrestamoRepositoryTest {
 
-    @Autowired
-    private PrestamoRepository prestamoRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private LibroRepository libroRepository;
-
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
-    @Autowired
-    private EstadoPrestamoCatalogoRepository estadoPrestamoCatalogoRepository;
+    @Autowired private PrestamoRepository prestamoRepository;
+    @Autowired private UsuarioRepository usuarioRepository;
+    @Autowired private LibroRepository libroRepository;
+    @Autowired private CategoriaRepository categoriaRepository;
+    @Autowired private EstadoPrestamoCatalogoRepository estadoPrestamoCatalogoRepository;
+    @Autowired private EstadoUsuarioCatalogoRepository estadoUsuarioRepository;
+    @Autowired private TipoUsuarioCatalogoRepository tipoUsuarioRepository;
 
     private Usuario usuario;
     private Libro libro;
@@ -45,6 +53,7 @@ class PrestamoRepositoryTest {
         // Crear categoría y libro
         Categoria categoria = new Categoria();
         categoria.setNombre("Ciencia Ficción");
+        categoria.setDescripcion("Obras literarias y narrativas");
         categoriaRepository.save(categoria);
 
         libro = new Libro();
@@ -59,6 +68,16 @@ class PrestamoRepositoryTest {
         libro.setCantidadDisponible(5);
         libroRepository.save(libro);
 
+        // Crear estado de usuario
+        EstadoUsuarioCatalogo estadoUsuario = new EstadoUsuarioCatalogo();
+        estadoUsuario.setNombre("Activo");
+        estadoUsuarioRepository.save(estadoUsuario);
+
+        // Crear tipo de usuario
+        TipoUsuarioCatalogo tipo = new TipoUsuarioCatalogo();
+        tipo.setNombre("Profesor");
+        tipoUsuarioRepository.saveAndFlush(tipo);
+
         // Crear usuario
         usuario = new Usuario();
         usuario.setUsername("carlos.mendoza");
@@ -67,9 +86,9 @@ class PrestamoRepositoryTest {
         usuario.setEmail("carlos.mendoza@universidad.edu.co");
         usuario.setIntentosFallidos(0);
         usuario.setRequiereCambioPass(false);
+        usuario.setEstadoUsuario(estadoUsuario);
+        usuario.setTipoUsuario(tipo);
         usuario.setFechaRegistro(LocalDateTime.now());
-        // Se deben setear las relaciones con TipoUsuarioCatalogo y EstadoUsuarioCatalogo,
-        // puedes omitirlas si están con valores default o usas @Nullable en tu entidad
         usuarioRepository.save(usuario);
     }
 

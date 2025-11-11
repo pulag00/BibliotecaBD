@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: co.edu.javaeriana.biblioteca.repository.CategoriaRepositoryTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.53 s -- in co.edu.javaeriana.biblioteca.repository.CategoriaRepositoryTest
